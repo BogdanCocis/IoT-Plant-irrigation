@@ -25,11 +25,18 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authz -> {
                     authz.requestMatchers(HttpMethod.POST, "/api/login").permitAll();
                     authz.requestMatchers(HttpMethod.POST, "/api/register").permitAll();
+                    authz.requestMatchers(HttpMethod.GET, "/api/test/**").permitAll();
+                    authz.requestMatchers(HttpMethod.GET, "/api/pumps/**").permitAll();
+                    authz.requestMatchers(HttpMethod.POST, "/api/pumps/**").permitAll();
+                    authz.requestMatchers(HttpMethod.PUT, "/api/pumps/**").permitAll();
+                    authz.requestMatchers(HttpMethod.GET, "/api/sensorData/**").permitAll();
+                    authz.requestMatchers(HttpMethod.POST, "/api/sensorData/**").permitAll();
                     authz.anyRequest().authenticated();
                 })
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
+
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
