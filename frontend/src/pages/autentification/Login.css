@@ -1,0 +1,102 @@
+#login-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+    padding: 8vh;
+}
+
+.error {
+    color: red;
+    margin: 10px 0;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.navbar-login {
+    width: 100vh;
+    background-color: #800020;
+    padding: 1.5vh 0;
+    text-align: center;
+    color: antiquewhite;
+    font-size: 24px;
+    border-radius: 10px;
+}
+
+.login-container {
+    text-align: center;
+}
+
+.login-form {
+    background-color: #fff;
+    padding: 10vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80vh;
+    text-align: start;
+}
+
+.login-h2 {
+    color: #800020;
+    font-size: 24px;
+}
+
+.login-label {
+    display: block;
+    margin: 10px 0 5px;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.login-input {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.login-input::placeholder {
+    color: #ccc;
+    font-weight: bold;
+}
+
+.login-p {
+    color: #800020;
+    font-size: 16px;
+}
+
+.login-a {
+    color: #800020;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.login-a:hover {
+    text-decoration: underline;
+}
+
+.center-link {
+    text-align: center;
+}
+
+.input-button-class {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.input-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    width: 20%;
+    border-radius: 20px;
+}

@@ -11,6 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -24,19 +26,13 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests(authz -> {
                     authz.requestMatchers(HttpMethod.POST, "/api/login").permitAll();
-                    authz.requestMatchers(HttpMethod.POST, "/api/register").permitAll();
-                    authz.requestMatchers(HttpMethod.GET, "/api/test/**").permitAll();
-                    authz.requestMatchers(HttpMethod.GET, "/api/pumps/**").permitAll();
-                    authz.requestMatchers(HttpMethod.POST, "/api/pumps/**").permitAll();
-                    authz.requestMatchers(HttpMethod.PUT, "/api/pumps/**").permitAll();
-                    authz.requestMatchers(HttpMethod.GET, "/api/sensorData/**").permitAll();
-                    authz.requestMatchers(HttpMethod.POST, "/api/sensorData/**").permitAll();
+                    authz.requestMatchers(HttpMethod.POST, "api/register").permitAll();
                     authz.anyRequest().authenticated();
                 })
+                .cors(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
-
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -45,7 +41,7 @@ public class SecurityConfiguration {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
                         .allowedOrigins("http://localhost:3000")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             }
