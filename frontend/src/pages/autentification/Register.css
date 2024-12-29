@@ -1,0 +1,89 @@
+.navbar-register {
+    width: 62%;
+    padding: 1.5vh 0;
+    background-color: #800020;
+    text-align: center;
+    color: antiquewhite;
+    font-size: 24px;
+    border-radius: 10px;
+    margin: 0px;
+}
+
+#body-register {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+    padding: 8vh;
+}
+
+.Register {
+    padding: 10vh;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    text-align: start;
+    margin: 0;
+}
+
+#label-register {
+    display: block;
+    justify-content: center;
+    margin: 0 5px;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container-register {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-register {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#button-register {
+    background-color: #ffa500;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#button-register:hover {
+    background-color: #800020;
+}
+
+.center-link-register {
+    text-align: center;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.register-a {
+    color: #800020;
+    font-weight: bold;
+}
