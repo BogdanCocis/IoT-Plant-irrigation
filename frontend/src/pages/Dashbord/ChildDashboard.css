@@ -1,0 +1,121 @@
+.child-dashboard-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+    padding: 8vh;
+}
+
+.child-navbar-dashboard {
+    width: 100vh;
+    background-color: #800020;
+    padding: 1.5vh 0;
+    text-align: center;
+    color: antiquewhite;
+    font-size: 24px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.child-user-icon {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.child-profile-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.child-dashboard-container {
+    text-align: center;
+}
+
+.child-sensor-section {
+    background-color: #fff;
+    padding: 10vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80vh;
+    text-align: start;
+    margin-bottom: 20px;
+}
+
+.child-dashboard-h2 {
+    color: #800020;
+    font-size: 24px;
+}
+
+.child-dashboard-item {
+    background: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.child-dashboard-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.child-strong {
+    color: black;
+}
+
+.child-sensor-details {
+    margin-top: 20px;
+}
+
+.child-progress-bar {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.child-progress-bar .child-progress-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.child-progress-bar-no-label .child-progress-label {
+    display: none;
+}
+
+.child-logoff-button {
+    background-color: #800020;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.child-logoff-button:hover {
+    background-color: #a00028;
+}

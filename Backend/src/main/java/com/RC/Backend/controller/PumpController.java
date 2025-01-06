@@ -30,4 +30,9 @@ public class PumpController {
     public ResponseEntity<PumpDTO> updatePumpStatus(@PathVariable Long id, @RequestParam boolean status) {
         return ResponseEntity.ok(pumpService.updatePumpStatus(id, status));
     }
+
+    @PutMapping("/{id}/threshold")
+    public ResponseEntity<PumpDTO> updateMoistureThreshold(@PathVariable Long id, @RequestParam float threshold) {
+        return ResponseEntity.ok(pumpService.updateMoistureThreshold(id, threshold));
+    }
 }

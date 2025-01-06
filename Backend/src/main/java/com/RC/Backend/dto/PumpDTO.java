@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class PumpDTO {
     private Long id;
     private boolean status;
     private LocalDateTime lastActivated;
+    private float moistureThreshold;
 }

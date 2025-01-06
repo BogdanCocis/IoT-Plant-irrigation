@@ -38,4 +38,11 @@ public class PumpService {
         arduinoService.sendPumpStatusToArduino(status);
         return pumpMapper.toPumpDTO(pump);
     }
+
+    public PumpDTO updateMoistureThreshold(Long id, float threshold) {
+        Pump pump = pumpRepository.findById(id).orElseThrow(() -> new RuntimeException("Pump not found"));
+        pump.setMoistureThreshold(threshold);
+        pump = pumpRepository.save(pump);
+        return pumpMapper.toPumpDTO(pump);
+    }
 }

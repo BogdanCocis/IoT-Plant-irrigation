@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class Pump {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +23,7 @@ public class Pump {
 
     @Column(nullable = false)
     private LocalDateTime lastActivated;
+
+    @Column(nullable = false)
+    private float moistureThreshold = 30.0f;
 }
