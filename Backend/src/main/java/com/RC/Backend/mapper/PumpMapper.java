@@ -12,6 +12,7 @@ public class PumpMapper {
                 .id(pumpDTO.getId())
                 .status(pumpDTO.isStatus())
                 .lastActivated(pumpDTO.getLastActivated())
+                .moistureThreshold(pumpDTO.getMoistureThreshold())
                 .build();
     }
 
@@ -19,7 +20,8 @@ public class PumpMapper {
         return new PumpDTO(
                 pump.getId(),
                 pump.isStatus(),
-                pump.getLastActivated()
+                pump.getLastActivated(),
+                pump.getMoistureThreshold()
         );
     }
 }

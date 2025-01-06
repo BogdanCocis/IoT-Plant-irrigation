@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class SensorData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
