@@ -3,6 +3,8 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import "./ChildDashboard.css";
 import {FaUserCircle} from "react-icons/fa";
 import {useNavigate, useLocation} from "react-router-dom";
+import SockJS from "sockjs-client";
+import {Client} from "@stomp/stompjs";
 
 const ChildDashboard = () => {
     const [soilMoisture, setSoilMoisture] = useState(0);
@@ -15,32 +17,30 @@ const ChildDashboard = () => {
     const profileRef = useRef(null);
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/sensorData")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Sensor Data:", data);
-                const latestData = data.reduce((acc, current) => {
-                    if (!acc.soilMoisture || new Date(current.timestamp) > new Date(acc.soilMoisture.timestamp)) {
-                        acc.soilMoisture = current;
+        const socket = new SockJS("http://localhost:8080/ws");
+        const client = new Client({
+            webSocketFactory: () => socket,
+            debug: (str) => console.log(str),
+            onConnect: () => {
+                console.log("WebSocket connected");
+                client.subscribe("/topic/sensorData", (message) => {
+                    if (message.body) {
+                        const data = JSON.parse(message.body);
+                        console.log("Received WebSocket Data:", data);
+                        setSoilMoisture(data.soilMoisture);
+                        setAirTemperature(data.temperature);
+                        setAirHumidity(data.humidity);
                     }
-                    if (!acc.airTemperature || new Date(current.timestamp) > new Date(acc.airTemperature.timestamp)) {
-                        acc.airTemperature = current;
-                    }
-                    if (!acc.airHumidity || new Date(current.timestamp) > new Date(acc.airHumidity.timestamp)) {
-                        acc.airHumidity = current;
-                    }
-                    return acc;
-                }, {});
-                if (latestData.soilMoisture) setSoilMoisture(latestData.soilMoisture.soilMoisture);
-                if (latestData.airTemperature) setAirTemperature(latestData.airTemperature.temperature);
-                if (latestData.airHumidity) setAirHumidity(latestData.airHumidity.humidity);
-            })
-            .catch(error => console.error("Error fetching sensor data:", error));
+                });
+            },
+            onDisconnect: () => console.log("WebSocket disconnected"),
+        });
+
+        client.activate();
+
+        return () => {
+            client.deactivate();
+        };
     }, []);
 
     useEffect(() => {
@@ -77,19 +77,28 @@ const ChildDashboard = () => {
         <div className="child-dashboard-body">
             <div className="child-navbar-dashboard">
                 <h1>Child Dashboard</h1>
-                <FaUserCircle className="child-user-icon" onClick={() => setShowProfile(!showProfile)}/>
+                <FaUserCircle
+                    className="child-user-icon"
+                    onClick={() => setShowProfile(!showProfile)}
+                />
             </div>
             {showProfile && (
                 <div className="child-profile-popup" ref={profileRef}>
-                    <p><strong>Role:</strong> {role}</p>
-                    <button onClick={handleLogoff} className="child-logoff-button">Logoff</button>
+                    <p>
+                        <strong>Role:</strong> {role}
+                    </p>
+                    <button onClick={handleLogoff} className="child-logoff-button">
+                        Logoff
+                    </button>
                 </div>
             )}
             <div className="child-dashboard-container">
                 <div className="child-sensor-section">
                     <h2 className="child-dashboard-h2">Sensor Data</h2>
                     <div className="child-sensor-details">
-                        <p><strong>Soil Moisture:</strong></p>
+                        <p>
+                            <strong>Soil Moisture:</strong>
+                        </p>
                         <ProgressBar
                             completed={soilMoisture}
                             bgColor={getProgressColor(soilMoisture)}
@@ -100,7 +109,9 @@ const ChildDashboard = () => {
                             baseBgColor="#ddd"
                             className="child-progress-bar"
                         />
-                        <p><strong>Air Humidity:</strong></p>
+                        <p>
+                            <strong>Air Humidity:</strong>
+                        </p>
                         <ProgressBar
                             completed={airHumidity}
                             bgColor={getProgressColor(airHumidity)}
@@ -111,10 +122,15 @@ const ChildDashboard = () => {
                             baseBgColor="#ddd"
                             className="child-progress-bar"
                         />
-                        <p><strong>Air Temperature:</strong> {airTemperature}°C</p>
+                        <p>
+                            <strong>Air Temperature:</strong> {airTemperature}°C
+                        </p>
                         <ProgressBar
                             completed={airTemperature}
-                            bgColor={getProgressColor(airTemperature, "temperature")}
+                            bgColor={getProgressColor(
+                                airTemperature,
+                                "temperature"
+                            )}
                             height="20px"
                             width="100%"
                             labelColor="#000"

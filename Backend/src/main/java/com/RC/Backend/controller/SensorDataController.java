@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 
+
 public class SensorDataController {
     private final SensorDataService sensorDataService;
 

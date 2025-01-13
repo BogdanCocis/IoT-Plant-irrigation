@@ -32,16 +32,25 @@ public class PumpService {
 
     public PumpDTO updatePumpStatus(Long id, boolean status) {
         Pump pump = pumpRepository.findById(id).orElseThrow(() -> new RuntimeException("Pump not found"));
-        pump.setStatus(status);
-        pump.setLastActivated(LocalDateTime.now());
+        if (pump.isManualMode()) {
+            pump.setStatus(status);
+            pump.setLastActivated(LocalDateTime.now());
+            arduinoService.sendPumpStatusToArduino(status);
+        }
         pump = pumpRepository.save(pump);
-        arduinoService.sendPumpStatusToArduino(status);
         return pumpMapper.toPumpDTO(pump);
     }
 
     public PumpDTO updateMoistureThreshold(Long id, float threshold) {
         Pump pump = pumpRepository.findById(id).orElseThrow(() -> new RuntimeException("Pump not found"));
         pump.setMoistureThreshold(threshold);
+        pump = pumpRepository.save(pump);
+        return pumpMapper.toPumpDTO(pump);
+    }
+
+    public PumpDTO updateManualMode(Long id, boolean manualMode) {
+        Pump pump = pumpRepository.findById(id).orElseThrow(() -> new RuntimeException("Pump not found"));
+        pump.setManualMode(manualMode);
         pump = pumpRepository.save(pump);
         return pumpMapper.toPumpDTO(pump);
     }

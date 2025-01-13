@@ -26,4 +26,7 @@ public class Pump {
 
     @Column(nullable = false)
     private float moistureThreshold = 30.0f;
+
+    @Column(nullable = false)
+    private boolean manualMode = false;
 }

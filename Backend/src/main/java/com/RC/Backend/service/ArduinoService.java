@@ -8,12 +8,12 @@ public class ArduinoService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public void sendPumpStatusToArduino(boolean status) {
-        // URL-ul for test
-        String testUrl = "http://localhost:8080/api/test/updatePumpStatus?status=" + status;
-        restTemplate.getForObject(testUrl, String.class);
-
-        // Real URL-ul for Arduino
-        // String realUrl = "http://arduino.local/updatePumpStatus?status=" + status;
-        // restTemplate.getForObject(realUrl, String.class);
+        String url = "http://192.168.0.105/updatePumpStatus?status=" + status;
+        try {
+            restTemplate.getForObject(url, String.class);
+            System.out.println("Command sent to ESP32 successfully.");
+        } catch (Exception e) {
+            System.err.println("Error sending command to ESP32: " + e.getMessage());
+        }
     }
 }

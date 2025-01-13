@@ -28,11 +28,15 @@ public class SecurityConfiguration {
                     authz.requestMatchers(HttpMethod.POST, "/api/login").permitAll();
                     authz.requestMatchers(HttpMethod.POST, "/api/register").permitAll();
                     authz.requestMatchers(HttpMethod.GET, "/api/sensorData").permitAll();
-                    authz.requestMatchers(HttpMethod.GET, "/api/pumps").permitAll();
                     authz.requestMatchers(HttpMethod.POST, "/api/sensorData").permitAll();
-                    authz.requestMatchers(HttpMethod.POST, "/api/pumps").permitAll();
                     authz.requestMatchers(HttpMethod.PUT, "/api/sensorData").permitAll();
-                    authz.requestMatchers(HttpMethod.PUT, "/api/pumps").permitAll();
+                    authz.requestMatchers(HttpMethod.GET, "/api/pumps/**").permitAll();
+                    authz.requestMatchers(HttpMethod.PUT, "/api/pumps/**").permitAll();
+                    authz.requestMatchers(HttpMethod.POST, "/api/pumps/**").permitAll();
+                    authz.requestMatchers("/api/pumps/**").permitAll();
+
+                    authz.requestMatchers("/ws/**").permitAll();
+
                     authz.anyRequest().authenticated();
                 })
                 .cors(withDefaults())

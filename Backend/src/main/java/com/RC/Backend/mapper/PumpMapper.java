@@ -11,6 +11,7 @@ public class PumpMapper {
         return Pump.builder()
                 .id(pumpDTO.getId())
                 .status(pumpDTO.isStatus())
+                .manualMode(pumpDTO.isManualMode())
                 .lastActivated(pumpDTO.getLastActivated())
                 .moistureThreshold(pumpDTO.getMoistureThreshold())
                 .build();
@@ -20,6 +21,7 @@ public class PumpMapper {
         return new PumpDTO(
                 pump.getId(),
                 pump.isStatus(),
+                pump.isManualMode(),
                 pump.getLastActivated(),
                 pump.getMoistureThreshold()
         );
