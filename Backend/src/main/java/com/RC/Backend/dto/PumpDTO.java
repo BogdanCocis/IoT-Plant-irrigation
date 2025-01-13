@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class PumpDTO {
     private Long id;
     private boolean status;
+    private boolean manualMode;
     private LocalDateTime lastActivated;
     private float moistureThreshold;
 }
