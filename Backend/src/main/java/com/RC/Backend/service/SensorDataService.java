@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-
 public class SensorDataService {
     private final SensorDataRepository sensorDataRepository;
     private final SensorDataMapper sensorDataMapper;
