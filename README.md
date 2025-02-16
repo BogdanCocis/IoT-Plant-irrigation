@@ -1,6 +1,6 @@
 ## Overview
 
-The Plant Irrigation System is an automated solution to monitor and control the irrigation of plants. It uses a combination of sensors, a microcontroller (Arduino), and a backend server to manage the irrigation process based on soil moisture levels. The system can be controlled manually or automatically based on predefined thresholds.
+The Plant Irrigation System is an automated solution to monitor and control the irrigation of plants. It uses a combination of sensors, a microcontroller, and a backend server to manage the irrigation process based on soil moisture levels. The system can be controlled manually or automatically based on predefined thresholds.
 
 ## Features
 
